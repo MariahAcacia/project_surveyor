@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <h1 class="center">Surveyor:</h1>
+    <h2 class="center">Tell Me #allthethings!</h2>
+    <p>Click on a survey below to take it or create on of your own!</p>
+    <%= link_to "Create New Survey", new_survey_path, class: "btn btn-primary btn-lg create-btn" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <h4 class="underline">Take a Survey</h4>
+    <ol>
+      <% @surveys.each do |survey| %>
+      <li><%= survey.title %>
+      <p><%= survey.description %></p>
+      <p><em>0 responses</em></p>
+      <%= link_to "Take Survey", "#", class: "btn btn-sm btn-default" %>
+      <%= link_to "View Results", "#", class: "btn btn-sm btn-default" %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
