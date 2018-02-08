@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= render partial: 'shared/survey_builder_header' %>
+    <div class="muted">
+      <p>Next, fill in the questions</p>
+      <h3>Title:</h3>
+      <p><%= @survey.title %></p>
+      <h3>Description:</h3>
+      <p><%= @survey.description %></p>
+    </div>
+    <hr>
+    <h3>Add a Multile Choice Question</h3>
+    <h5>1. Select Options | 2. Add Question Text</h5>
+    <%= form_for [@survey, @question] do |f| %>
+      <%= f.label :question, "What is your question?" %><br>
+      <%= display_form_errors(@question, :question) %>
+      <%= f.text_field :question %><br>
+      <%= f.hidden_field :number_of_options, value: params[:question][:number_of_options] %>
+      <%= f.hidden_field :required, value: params[:question][:required] %>
+      <%= f.hidden_field :multiple_select, value: params[:question][:multiple_select] %>
+      <%= f.fields_for :options, @question.options do |option_fields| %>
+          <%= option_fields.label :description, "Option #" %>:<br>
+          <%= option_fields.text_field :description %><br>
+      <% end %>
+      <%= f.submit "Add Question", class: "btn btn-primary btn-lg create-btn" %>
+    <% end %>
+    <%= link_to "Back to previous step", survey_questions_build_question_path %>
+  </div>
+</div>

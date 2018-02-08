@@ -11,7 +11,7 @@
     <hr>
     <h3>Add a Multile Choice Question</h3>
     <h5>1. Select Options | 2. Add Question Text</h5>
-    <%= form_for :question do |q| %>
+    <%= form_for :question, url: { action: :build_question } do |q| %>
       <%= q.label :number_of_options, "How many options should the question have?" %><br>
       <%= q.select :number_of_options, 2..5 %><br>
       <%= q.label :multiple_select, "How many options may be selected?" %><br>

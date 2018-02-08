@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
     <%= render partial: 'shared/survey_builder_header' %>
-    </div>
     <p>First, choose a title and description for your survey.</p>
     <%= form_for @survey do |s| %>
       <%= s.label :title, "Survey Title" %><br>

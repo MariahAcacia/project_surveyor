@@ -5,17 +5,29 @@ class QuestionsController < ApplicationController
     @question = Question.new(survey_id: @survey.id)
   end
 
-  def create
+
+  def build_question
     @survey = Survey.find(params[:survey_id])
     @question = @survey.questions.build(whitelisted_params)
-    if @question.save
-      flash[:success] = "Okay! Lets get started!"
-      redirect_to
+    @options = []
+    @question.number_of_options.times do |x|
+      @options << @question.options.build
+    end
+    render :edit
+  end
+
+
+  def create
+    @survey = Survey.find(params[:survey_id])
+    if @question = @survey.questions.create!(whitelisted_params)
+      flash[:success] = "Options saved successfully!"
+      redirect_to survey_path(@survey)
     else
       flash[:danger] = "There is a problem with your submission"
-      render :new
+      render :edit
     end
   end
+
 
 
   private
@@ -27,7 +39,9 @@ class QuestionsController < ApplicationController
                                      :multiple_select,
                                      :survey_id,
                                      :question,
-                                     :options_attributes => [:id, :_destroy, :description, :question_id])
+                                     options_attributes: [:description, :_destroy])
   end
+
+
 
 end

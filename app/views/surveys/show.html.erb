@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
-    <%= render partial: 'shared/survey_builder_header' %> 
+    <%= render partial: 'shared/survey_builder_header' %>
     <p>Next, fill in the questions</p>
     <h3>Title:</h3>
     <p><%= @survey.title %></p>
@@ -17,8 +17,8 @@
     <% else %>
       <ol>
         <% @survey.questions.each do |q| %>
-        <li><%= q.question %>
-            <%= q.required %> Select <%= q.multiple_select == true ? "one" : "multiple" %>
+        <li><%= q.question %><br>
+            <em>Question required: <%= q.required == true ? "yes" : "no" %>. Select <%= q.multiple_select == true ? "multiple" : "one" %></em>
           <ol>
             <% q.options.each do |o| %>
               <li><%= o.description %></li>
@@ -28,7 +28,7 @@
         </li>
         <% end %>
       </ol>
-    <%= link_to "Finish Building Survey and Return", "#", class: "btn-lg btn btn-primary create-btn" %>
+    <%= link_to "Finish Building Survey and Return", root_path, class: "btn-lg btn btn-primary create-btn" %>
     <% end %>
     <hr>
   </div>
