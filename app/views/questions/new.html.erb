@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= render partial: 'shared/survey_builder_header' %>
+    <div class="muted">
+      <p>Next, fill in the questions</p>
+      <h3>Title:</h3>
+      <p><%= @survey.title %></p>
+      <h3>Description:</h3>
+      <p><%= @survey.description %></p>
+    </div>
+    <hr>
+    <h3>Add a Multile Choice Question</h3>
+    <h5>1. Select Options | 2. Add Question Text</h5>
+    <%= form_for :question do |q| %>
+      <%= q.label :number_of_options, "How many options should the question have?" %><br>
+      <%= q.select :number_of_options, 2..5 %><br>
+      <%= q.label :multiple_select, "How many options may be selected?" %><br>
+      <%= q.radio_button :multiple_select, 'false' %>  Just One<br>
+      <%= q.radio_button :multiple_select, 'true' %>  Multiple<br>
+      <%= q.label :required, "Is the question required?" %><br>
+      <%= q.radio_button :required, true %>  Yes<br>
+      <%= q.radio_button :required, false %>  No<br>
+      <%= q.submit "Continue to the Next Step", class: "btn btn-lg btn-primary create-btn" %>
+    <% end %>
+    <hr>
+    <div class="muted">
+      <h3>Existing Questions:</h3>
+      <% if @survey.questions.empty? %>
+        <p>There are no questions yet!</p>
+      <% else %>
+        <ol>
+          <% @survey.questions.each do |q| %>
+          <li><%= q.question %>
+              <%= q.required %> Select <%= q.multiple_select == true ? "one" : "multiple" %>
+            <ol>
+              <% q.options.each do |o| %>
+                <li><%= o.description %></li>
+              <% end %>
+            </ol>
+          <%= link_to "Remove Question", "#" %>
+          </li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= render partial: 'shared/survey_builder_header' %> 
+    <p>Next, fill in the questions</p>
+    <h3>Title:</h3>
+    <p><%= @survey.title %></p>
+    <h3>Description:</h3>
+    <p><%= @survey.description %></p>
+    <hr>
+    <h3>Add a Question:</h3>
+    <p><em>Choose which type of question to add (only multiple choice for now).</em></p>
+    <%= link_to "Add a New Question", new_survey_question_path(@survey), class: "btn btn-lg btn-primary create-btn" %>
+    <hr>
+    <h3>Existing Questions:</h3>
+    <% if @survey.questions.empty? %>
+      <p>There are no questions yet!</p>
+    <% else %>
+      <ol>
+        <% @survey.questions.each do |q| %>
+        <li><%= q.question %>
+            <%= q.required %> Select <%= q.multiple_select == true ? "one" : "multiple" %>
+          <ol>
+            <% q.options.each do |o| %>
+              <li><%= o.description %></li>
+            <% end %>
+          </ol>
+        <%= link_to "Remove Question", "#" %>
+        </li>
+        <% end %>
+      </ol>
+    <%= link_to "Finish Building Survey and Return", "#", class: "btn-lg btn btn-primary create-btn" %>
+    <% end %>
+    <hr>
+  </div>
+</div>
