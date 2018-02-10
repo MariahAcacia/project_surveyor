@@ -29,6 +29,17 @@ class QuestionsController < ApplicationController
   end
 
 
+  def destroy
+    @question = Question.find(params[:id])
+    if @question.destroy
+      flash[:success] = "Question Successfully Deleted!"
+      redirect_to survey_path(Survey.find(params[:survey_id]))
+    else
+      flash[:danger] = "Question Could NOT be Deleted"
+      redirect_to survey_path(Survey.find(params[:survey_id]))
+    end
+  end
+
 
   private
 
