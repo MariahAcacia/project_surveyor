@@ -3,7 +3,7 @@
     <h1 class="center">Surveyor:</h1>
     <h2 class="center">Tell Me #allthethings!</h2>
     <p>Click on a survey below to take it or create one of your own!</p>
-    <%= link_to "Create New Survey", new_survey_path, class: "btn btn-primary btn-lg create-btn" %>
+    <%= link_to "Create New Survey", new_creator_survey_path, class: "btn btn-primary btn-lg create-btn" %>
   </div>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
       <li><%= survey.title %>
       <p><%= survey.description %></p>
       <p><em>0 responses</em></p>
-      <%= link_to "Take Survey", "#", class: "btn btn-sm btn-default" %>
+      <%= link_to "Take Survey", edit_taker_survey_path(survey), class: "btn btn-sm btn-default" %>
       <%= link_to "View Results", "#", class: "btn btn-sm btn-default" %></li>
       <% end %>
     </ol>

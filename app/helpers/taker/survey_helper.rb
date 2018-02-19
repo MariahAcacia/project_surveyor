@@ -1,0 +1,2 @@
+module Taker::SurveyHelper
+end

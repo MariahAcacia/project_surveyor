@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= render partial: 'shared/survey_taker_header', locals: { survey: @survey } %>
+    <!-- <%= form_for [:taker, @survey] do |s| %> -->
+      <% @survey.questions.each do |question| %>
+    <!--  <br>
+        <%= question.required ? "*" : " " %><%= s.label :description, question.question %>
+        <br>
+        <%= s.collection_radio_buttons :description, question.options, :id, :description, {}, multiple: true %>
+        <br>
+      <% end %>
+    <% end %> -->
+    <% question.options %>
+    <% end %> 
+
+  </div>
+</div>

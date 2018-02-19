@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class Creator::QuestionsController < ApplicationController
 
   def new
     @survey = Survey.find(params[:survey_id])
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
     @survey = Survey.find(params[:survey_id])
     if @question = @survey.questions.create!(whitelisted_params)
       flash[:success] = "Options saved successfully!"
-      redirect_to survey_path(@survey)
+      redirect_to creator_survey_path(@survey)
     else
       flash[:danger] = "There is a problem with your submission"
       render :edit
@@ -33,10 +33,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     if @question.destroy
       flash[:success] = "Question Successfully Deleted!"
-      redirect_to survey_path(Survey.find(params[:survey_id]))
+      redirect_to creator_survey_path(Survey.find(params[:survey_id]))
     else
       flash[:danger] = "Question Could NOT be Deleted"
-      redirect_to survey_path(Survey.find(params[:survey_id]))
+      redirect_to creator_survey_path(Survey.find(params[:survey_id]))
     end
   end
 

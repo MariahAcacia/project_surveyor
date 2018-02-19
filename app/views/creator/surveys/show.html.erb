@@ -9,7 +9,7 @@
     <hr>
     <h3>Add a Question:</h3>
     <p><em>Choose which type of question to add (only multiple choice for now).</em></p>
-    <%= link_to "Add a New Question", new_survey_question_path(@survey), class: "btn btn-lg btn-primary create-btn" %>
+    <%= link_to "Add a New Question", creator_new_survey_question_path(@survey), class: "btn btn-lg btn-primary create-btn" %>
     <hr>
     <h3>Existing Questions:</h3>
     <% if @survey.questions.empty? %>
@@ -24,7 +24,7 @@
               <li><%= o.description %></li>
             <% end %>
           </ol>
-        <%= link_to "Remove Question", survey_question_path(@survey, q), method: "DELETE", data: { confirm: "Are you sure you want to delete this question and it's options?"} %>
+        <%= link_to "Remove Question", creator_survey_question_path(@survey, q), method: "DELETE", data: { confirm: "Are you sure you want to delete this question and it's options?"} %>
         </li>
         <% end %>
       </ol>

@@ -7,4 +7,7 @@ class Question < ApplicationRecord
             presence: true,
             inclusion: 2..5
 
+  has_many :responses, dependent: :destroy, inverse_of: :question
+  accepts_nested_attributes_for :responses, allow_destroy: true 
+
 end

@@ -1,4 +1,4 @@
-class SurveysController < ApplicationController
+class Creator::SurveysController < ApplicationController
 
   def index
     @surveys = Survey.all
@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(whitelisted_params)
     if @survey.save
       flash[:success] = "Survey Created Successfully!"
-      redirect_to survey_path(@survey)
+      redirect_to create_survey_path(@survey)
     else
       flash[:danger] = "Survey Could NOT Be Created"
       render :new
